@@ -1,0 +1,55 @@
+{
+	"traindir" : "/s/mlsc/abake116/geodata/train",
+	"testdir" : "/s/mlsc/abake116/geodata/test",
+	"basedir": "/s/mlsc/abake116/geologs",
+	"id": "RESNET_L111_S2_E128_SELU_BASIC_BS32_GN",
+
+	"seed": 1001,
+	"gpus": [0],
+	"optimizer": "adam",
+	"lr_schedule": "plateau",
+	"test_interval": 5,
+	"log_interval": 200,
+	"epochs": 1000,
+
+	"data": {
+		"loader": {
+			"batch_size": 32,
+			"shuffle": true,
+			"num_workers": 2,
+			"drop_last": true,
+			"pin_memory": true
+		},
+		"transforms": {
+			"hflip": {},
+			"tensor": {},
+			"normalize": {
+				"mean" : [8.1333, 8.3175, 8.3151],
+				"std": [1.1967, 1.5118, 1.5296]
+			}
+
+		}
+	},
+
+	"model":{
+		"in_features": 3,
+		"nonlinearity": "selu",
+		"initial_channels": 32,
+		"strides": [2,2,2],
+		"blocks": [1,1,1],
+		"padding": [1,1,1],
+		"kernels": [3,3,3],
+		"norm": "groupnorm",
+		"group_size": 8,
+		"embedding_dim": 128,
+		"block": "basic",
+		"num_classes": 6
+	},
+	"optimizer_args" : {
+		"lr": 1e-4
+	},
+	"lr_schedule_args": {
+		"factor": 0.1,
+		"patience": 5
+	}
+}

@@ -1,0 +1,35 @@
+{
+	"model_path": "model/best.pt",
+	"gpus": [],
+	"embedding_path": "/app/test/data/embeddings",
+	"model_args": {
+		"in_features": 3,
+		"nonlinearity": "selu",
+		"initial_channels": 32,
+		"strides": [2,2,2],
+		"blocks": [1,1,1],
+		"padding": [1,1,1],
+		"kernels": [3,3,3],
+		"norm": "groupnorm",
+		"group_size": 8,
+		"embedding_dim": 128,
+		"block": "basic",
+		"num_classes": 6
+	},
+	"data": {
+		"loader": {
+			"batch_size": 64,
+			"shuffle": false,
+			"num_workers": 4,
+			"pin_memory": true
+		},
+		"transforms": {
+			"tensor": {},
+			"normalize": {
+				"mean" : [8.1333, 8.3175, 8.3151],
+				"std": [1.1967, 1.5118, 1.5296]
+			}
+
+		}
+	}
+}

@@ -1,0 +1,43 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: geo-app
+---
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: geo-app-controller
+  labels:
+    app: geo-app-pred
+    env: prod    
+  namespace: geo-app
+spec:
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: geo-app-pred
+        env: prod
+      namespace: geo-app
+    spec:
+      containers:
+      - image: bakerada/geoml:0
+        name: geoml
+        ports:
+        - containerPort: 5000
+          protocol: TCP
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: geo-app-balancer
+  labels:
+    app: geo-app-pred
+  namespace: geo-app
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 5000
+    targetPort: 5000
+  selector:
+    app: geo-app-pred
