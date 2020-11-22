@@ -13,7 +13,7 @@ class TestModelServer:
 
 	def test_query_topk_img(self,config):
 		server = ModelServer(config)
-		path = 'test/data/KO5OR.jpg'
+		path = 'test/data/sample.jpg'
 		nbrs = server.query_topk(path, 10)
 		assert len(nbrs) == 1
 		assert len(nbrs[0]) ==10

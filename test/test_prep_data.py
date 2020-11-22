@@ -16,7 +16,7 @@ class TestDataPrep:
 		assert eval_count == 250.
 
 	def test_sample_dir(self):
-		samples = sample_dir(Path(os.environ['DATADIR']) / 'marble',
+		samples = sample_dir(Path(os.environ['DATADIR']) / 'class_1',
                              test_count= 1000,
                              eval_count= 250)
 
