@@ -1,4 +1,4 @@
-# GeoImgSim
+# image Similarity
 
 The goal of this repo is to create a method for image retrieval.  The method utilizes a lightweight slightly modified ResNet architecture to perform image classification.  Before the final linear layer in the model architecture is a linear layer that creates an embedding vector for each image.  The method then uses 
 
